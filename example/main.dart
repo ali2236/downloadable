@@ -1,7 +1,6 @@
 import 'package:downloadable/downloadable.dart';
 
-main() async{
-
+main() async {
   var tempFolder = '';
 
   var downloadable = Downloadable(
@@ -11,17 +10,15 @@ main() async{
 
   var downloaded = await downloadable.downloaded;
 
-  if(!downloaded){
-
-    var onDownloadComplete = (){
+  if (!downloaded) {
+    var onDownloadComplete = () {
       print('download complete!');
     };
 
     var progressStream = downloadable.download(onDownloadComplete);
 
-    progressStream.listen((p){
-      print('${p*100}%...');
+    progressStream.listen((p) {
+      print('${p * 100}%...');
     });
   }
-
 }

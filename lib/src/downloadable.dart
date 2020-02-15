@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 
-class Downloadable{
-
+class Downloadable {
   final String downloadLink;
   final String fileAddress;
 
@@ -14,31 +13,31 @@ class Downloadable{
 
   bool _isDownloading = false;
   CancelToken _cancelToken = CancelToken();
-  StreamController<double> _progressController = StreamController<
-      double>.broadcast();
-  Future<Response> _download;
+  StreamController<double> _progressController =
+      StreamController<double>.broadcast();
 
   bool get downloading => _isDownloading;
 
   Future<bool> get downloaded async => File(fileAddress).exists();
-  
+
   File get file => File(fileAddress);
 
   Dio dio;
 
   List<VoidCallback> _listerners = [];
   void notifyListeners() {
-    _listerners.forEach((f)=>f());
+    _listerners.forEach((f) => f());
   }
 
   Stream<double> download(VoidCallback onDownloadComplete) {
-    if(_isDownloading){
+    if (_isDownloading) {
       _listerners.add(onDownloadComplete);
+      return _progressController.stream;
     } else {
       _listerners.add(onDownloadComplete);
       _isDownloading = true;
       dio = Dio();
-      _download = dio.download(
+      dio.download(
         downloadLink,
         fileAddress,
         cancelToken: _cancelToken,
@@ -49,8 +48,7 @@ class Downloadable{
           }
         },
         deleteOnError: true,
-      )
-        ..then((_) {
+      )..then((_) {
           _isDownloading = false;
           notifyListeners();
           _listerners.clear();

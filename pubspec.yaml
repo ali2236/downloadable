@@ -1,8 +1,8 @@
 name: downloadable
 description: downloadables
-version: 0.0.1
-author:
-homepage:
+version: 0.1.0
+author: Ali Ghanabri <ali.gh2236@gmail.com>
+homepage: https://github.com/ali2236/downloadable
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
