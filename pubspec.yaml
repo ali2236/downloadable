@@ -1,0 +1,16 @@
+name: downloadable
+description: downloadables
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  dio: ^3.0.8
+
+
+#dev_dependencies:
+#  flutter_test:
+#    sdk: flutter
