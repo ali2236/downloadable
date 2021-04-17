@@ -7,8 +7,8 @@ class Downloadable {
   final String fileAddress;
 
   Downloadable({
-    this.downloadLink,
-    this.fileAddress,
+    required this.downloadLink,
+    required this.fileAddress,
   });
 
   bool _isDownloading = false;
@@ -18,11 +18,11 @@ class Downloadable {
 
   bool get downloading => _isDownloading;
 
-  Future<bool> get downloaded async => File(fileAddress).exists();
+  bool get downloaded => File(fileAddress).existsSync();
 
   File get file => File(fileAddress);
 
-  Dio dio;
+  late Dio dio;
 
   List<VoidCallback> _listerners = [];
   void notifyListeners() {
@@ -50,6 +50,7 @@ class Downloadable {
         deleteOnError: true,
       )..then((_) {
           _isDownloading = false;
+          _progressController.sink.close();
           notifyListeners();
           _listerners.clear();
         });

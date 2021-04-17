@@ -1,16 +1,13 @@
 name: downloadable
 description: downloadables
-version: 0.1.0
-author: Ali Ghanabri <ali.gh2236@gmail.com>
+version: 1.0.0
 homepage: https://github.com/ali2236/downloadable
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  dio: ^3.0.8
+  dio: ^4.0.0
 
-
-#dev_dependencies:
-#  flutter_test:
-#    sdk: flutter
+dev_dependencies:
+  test: ^1.16.8
