@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' hide VoidCallback;
+
+typedef VoidCallback = void Function();
 
 class Downloadable {
   final String downloadLink;
